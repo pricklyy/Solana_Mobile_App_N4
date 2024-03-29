@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, View, ActivityIndicator } from "react-native";
 import { Text } from "react-native-paper";
 
 import { Section } from "../Section";
@@ -13,7 +13,7 @@ export function HomeScreen() {
 
   return (
     <View style={styles.screenContainer}>
-      <TopBar/>
+      <TopBar />
       <Text
         style={{ fontWeight: "bold", marginBottom: 12 }}
         variant="displaySmall"
@@ -25,18 +25,21 @@ export function HomeScreen() {
       ) : (
         <>
           <Section
-            title="Solana SDKs"
-            description="Configured with Solana SDKs like Mobile Wallet Adapter and web3.js."
+            title="Your Phantom"
+            description="Kết nối vào ví phantom của bạn"
           />
-          <Section
-            title="UI Kit and Navigation"
-            description="Utilizes React Native Paper components and the React Native Navigation library."
-          />
-          <Section
-            title="Get started!"
-            description="Connect or Sign in with Solana (SIWS) to link your wallet account."
-          />
-          <SignInFeature />
+          <View style={{
+            justifyContent: 'center',
+            alignItems: 'center'
+          }}>
+            <ActivityIndicator size={90} color="#0000ff" style={{ marginTop: 50 }} />
+            <Text>Loading</Text>
+          </View>
+
+          <View style={{ marginTop: 50 }}>
+            <SignInFeature />
+          </View>
+
         </>
       )}
     </View>
@@ -47,7 +50,7 @@ const styles = StyleSheet.create({
   screenContainer: {
     padding: 16,
     flex: 1,
-    backgroundColor:"#FFF"
+    backgroundColor: "#FFF"
   },
   buttonGroup: {
     flexDirection: "column",

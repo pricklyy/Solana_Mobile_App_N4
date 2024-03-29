@@ -20,6 +20,7 @@ import ChangeCapcha from "./views/ChangeCapcha";
 import ChangePassW from "./views/ChangePassW";
 import InfoDetail from "./views/InfoDeteil";
 import ChangeEmail from "./views/ChangeEmail";
+import DiemThuongScreen from "./views/DiemThuongScreen";
 import { HomeScreen } from "./src/screens";
 import { HomeNavigator } from "./src/navigators/HomeNavigator";
 import { AppNavigator } from "./src/navigators/AppNavigator";
@@ -39,6 +40,7 @@ import {
   adaptNavigationTheme,
 } from "react-native-paper";
 import { ClusterProvider } from "./src/components/cluster/cluster-data-access";
+import Welcome from "./views/Welcome";
 const queryClient = new QueryClient();
 
 
@@ -73,30 +75,31 @@ export default function App() {
             <ClusterProvider>
               <ConnectionProvider config={{ commitment: "processed" }}>
                 <PaperProvider>
-                <Stack.Navigator initialRouteName='Màn Hình Đăng Nhập' screenOptions={{ headerShown: false, gestureEnabled: false }}>
-                  <Stack.Screen name='Màn Hình Đăng Nhập' component=
-                    {ManHinhDangNhap} />
-                  <Stack.Screen name='Màn Hình Đăng Ký' component={ManHinhDangKy} />
-                  <Stack.Screen name='Màn Hình Chính' component={ManHinhHome} />
-                  <Stack.Screen name="GameDetail" component={GameDetail} />
-                  <Stack.Screen name="StartQuizz" component={StartQuizz} />
-                  <Stack.Screen name="ResultScreen" component={ResultQuizz} />
-                  <Stack.Screen name="Home" component={HomeScreenApp} />
-                  <Stack.Screen name="QuizScreen" component={QuizScreen} />
-                  <Stack.Screen name="RankScreen" component={RankScreen} />
-                  <Stack.Screen name="ChangeCapcha" component={ChangeCapcha} />
-                  <Stack.Screen name="ChangePassW" component={ChangePassW} />
-                  <Stack.Screen name="InfoDetail" component={InfoDetail} />
-                  <Stack.Screen name="ChangeEmail" component={ChangeEmail} />
-                  {/*  */}
-                  <Stack.Screen name="HomeWall" component={HomeScreen} />
-                  <Stack.Screen name="HomeNavigator" component={HomeNavigator} />
-                  <Stack.Screen name="AppNavigator" component={AppNavigator} />
-                  {/* <Stack.Screen name="SettingScreen" component={SettingsScreen} /> */}
-                  <Stack.Screen name="Settings" component={SettingsScreen} />
-                  {/* <Stack.Screen name="WalletScreen" component={WalletScreen} /> */}
-                
-                </Stack.Navigator>
+                  <Stack.Navigator initialRouteName='Màn Hình Chào' screenOptions={{ headerShown: false, gestureEnabled: false }}>
+                    <Stack.Screen name='Màn Hình Chào' component={Welcome} />
+                    <Stack.Screen options={{ headerShown: false }} name='Màn Hình Đăng Nhập' component=
+                      {ManHinhDangNhap} />
+                    <Stack.Screen name='Màn Hình Đăng Ký' component={ManHinhDangKy} />
+                    <Stack.Screen name='Màn Hình Chính' component={ManHinhHome} />
+                    <Stack.Screen name="GameDetail" component={GameDetail} />
+                    <Stack.Screen name="StartQuizz" component={StartQuizz} />
+                    <Stack.Screen name="ResultScreen" component={ResultQuizz} />
+                    <Stack.Screen name="Home" component={HomeScreenApp} />
+                    <Stack.Screen name="QuizScreen" component={QuizScreen} />
+                    <Stack.Screen name="RankScreen" component={RankScreen} />
+                    <Stack.Screen name="ChangeCapcha" component={ChangeCapcha} />
+                    <Stack.Screen name="ChangePassW" component={ChangePassW} />
+                    <Stack.Screen name="InfoDetail" component={InfoDetail} />
+                    <Stack.Screen name="ChangeEmail" component={ChangeEmail} />
+                    {/*  */}
+                    <Stack.Screen name="HomeWall" component={HomeScreen} />
+                    <Stack.Screen name="HomeNavigator" component={HomeNavigator} />
+                    <Stack.Screen name="AppNavigator" component={AppNavigator} />
+                    {/* <Stack.Screen name="SettingScreen" component={SettingsScreen} /> */}
+                    <Stack.Screen name="Settings" component={SettingsScreen} />
+                    {/* <Stack.Screen name="WalletScreen" component={WalletScreen} /> */}
+
+                  </Stack.Navigator>
                 </PaperProvider>
               </ConnectionProvider>
             </ClusterProvider>

@@ -1,19 +1,19 @@
 import { StyleSheet, Text, View, Image, ImageBackground, FlatList, Alert } from "react-native";
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import NFTCard from "./NFTCard";
-import { useAuth } from "../configs/authContext"; 
-import { API_LIST_QUIZZ, API_TOTAL_COIN_BY_UID, API_RANK_LIST } from "../configs/api-config"; 
+import { useAuth } from "../configs/authContext";
+import { API_LIST_QUIZZ, API_TOTAL_COIN_BY_UID, API_RANK_LIST } from "../configs/api-config";
 import { useNavigation } from '@react-navigation/native';
 export default function DiemThuongScreen() {
   const [nfts, setNfts] = useState([]);
   const [data, setData] = useState([]);
-  const [totalCoin, setTotalCoin] = useState(); 
+  const [totalCoin, setTotalCoin] = useState();
   const { user } = useAuth();
   const navigation = useNavigation();
   console.log(user);
-  const xKey = "Z0s1HomCTG-Ppn--"; // Thay thế bằng x-api-key của bạn
-  const wallID = "9FWUokoE27tEtaxCvcUwQwQdtY5bbzcgqX7miKct1geS"; // Thay thế bằng địa chỉ ví của bạn
+  const xKey = "SgoCpRiRdZ8IGvOB"; // Thay thế bằng x-api-key của bạn
+  const wallID = "21Enez3QKHJHdiMGVcf3YsNEixYpHwbNbXBsHtDiEGmv"; // Thay thế bằng địa chỉ ví của bạn
   const network = "devnet"; // Sử dụng mạng devnet
   // useEffect(() => {
   //   fetchNFTs();
@@ -25,12 +25,12 @@ export default function DiemThuongScreen() {
     getCoin();
 
     const unsubscribe = navigation.addListener('focus', () => {
-    fetchNFTs();
-    getCoin();
+      fetchNFTs();
+      getCoin();
     });
-  
+
     return unsubscribe;
-  }, [navigation, user]); 
+  }, [navigation, user]);
 
   const getCoin = async () => {
     try {
@@ -45,28 +45,28 @@ export default function DiemThuongScreen() {
   };
 
   const fetchNFTs = async () => {
-      try {
-        const nftUrl = `https://api.shyft.to/sol/v1/nft/read_all?network=${network}&address=${wallID}`;
-        const response = await axios.get(nftUrl, {
-          headers: {
-            "Content-Type": "application/json",
-            "x-api-key": xKey,
-          },
-        }); 
-        const nftData = response.data.result.map((item) => ({
-          id: item.mint,
-          name: item.name,
-          points: 100, // Giả sử mỗi NFT cần 100 điểm
-          imageUri: { uri: item.image_uri },
-        }));
-        setNfts(nftData);
-      } catch (error) {
-        console.log(error);
-        Alert.alert("Error", "Unable to fetch NFTs");
-      }
-    };
+    try {
+      const nftUrl = `https://api.shyft.to/sol/v1/nft/read_all?network=${network}&address=${wallID}`;
+      const response = await axios.get(nftUrl, {
+        headers: {
+          "Content-Type": "application/json",
+          "x-api-key": xKey,
+        },
+      });
+      const nftData = response.data.result.map((item) => ({
+        id: item.mint,
+        name: item.name,
+        points: 100, // Giả sử mỗi NFT cần 100 điểm
+        imageUri: { uri: item.image_uri },
+      }));
+      setNfts(nftData);
+    } catch (error) {
+      console.log(error);
+      Alert.alert("Error", "Unable to fetch NFTs");
+    }
+  };
 
-  const tranferDoiThuong  = async () => {
+  const tranferDoiThuong = async () => {
     var myHeaders = new Headers();
     myHeaders.append("x-api-key", xKey);
     myHeaders.append("Content-Type", "application/json");
@@ -98,46 +98,54 @@ export default function DiemThuongScreen() {
       points={item.points}
       imageUri={item.imageUri}
       onPress={() => {
-        if(totalCoin < item.points){
-            Alert.alert("Thông báo!", "Không đủ điểm", [
-          {
-            text: "OK",
-          },
-        ]);
-        }else{
-         tranferDoiThuong();
+        if (totalCoin < item.points) {
+          Alert.alert("Thông báo!", "Không đủ điểm", [
+            {
+              text: "OK",
+            },
+          ]);
+        } else {
+          tranferDoiThuong();
         }
       }}
     />
   );
-  
+
   return (
     <View style={styles.container}>
-      <View style={[styles.cardView,{borderRadius:20,}]}>
-        <ImageBackground
-          style={[styles.imgBackground, {borderRadius:50}]}
-          resizeMode="stretch"
-          source={require("../assets/Frame_10.png")}
-        >
-          <Text style={{margin:5,marginLeft:10,fontSize:16,fontWeight:"bold",color:"#FFF" , justifyContent:"flex-start"}}>Bạn hiện có</Text>
-          <View style={{flexDirection:"row"}}>
-            <Text style={{margin:5,marginLeft:10,fontSize:16,fontWeight:"bold",color:"#FFF"}}>{totalCoin} </Text>   
-            <Image style={{width:20,height:20,alignSelf:"center"}}  source={require("../assets/points.png")}/> 
+      <View style={styles.cardView}>
+        <View
+          style={[styles.imgBackground, { borderRadius: 50 }]}>
+          <Image
+            style={{
+              height: 100,
+              width: 100
+            }}
+            source={require("../assets/cup.png")}></Image>
+          <View style={{ justifyContent: 'center', alignItems: 'center', marginHorizontal: 12 }}>
+            <Text style={{ fontSize: 25, fontWeight: 'bold' }}>Điểm thưởng</Text>
+            <View style={{ flexDirection: "row", justifyContent: "center", alignItems: 'center' }}>
+              <Text style={{ fontSize: 50, fontWeight: "bold", color: "#ffaf18" }}>{totalCoin} </Text>
+              <Image style={{ width: 50, height: 50 }} source={require("../assets/points.png")} />
+            </View>
           </View>
-            <Text style={{margin:5,marginLeft:10,fontSize:16,fontWeight:"bold",color:"#FFF"}}>Điểm thưởng</Text> 
-        </ImageBackground>
-      </View>
-      
-      <View style={{flexDirection:"row",  backgroundColor:"#11758A", width:"100%", height:60,marginBottom:10}}>
-        <Image style={{width:50,height:50,alignSelf:"center",margin:10}}  source={require("../assets/gift.png")}/> 
-        <Text style={{alignSelf:"center", color:"#FFFFFF" , fontWeight:"bold"}}>Quà của tôi</Text>
+          <View>
+            <View style={{ flexDirection: "column", justifyContent: 'center', alignItems: 'center' }}>
+              <Image style={{ width: 30, height: 30 }} source={require("../assets/gift.png")} />
+              <Text style={{ alignSelf: "center", color: "black", fontWeight: "bold" }}>Quà của tôi</Text>
+            </View>
+
+            <View style={{ flexDirection: "column", justifyContent: 'center', alignItems: 'center', marginTop: 10 }}>
+              <Image style={{ width: 30, height: 30 }} source={require("../assets/history_reward_gift.png")} />
+              <Text style={{ alignSelf: "center", color: "black", fontWeight: "bold" }}>Lịch sử</Text>
+            </View>
+
+          </View>
+        </View>
       </View>
 
-      <View style={{flexDirection:"row",  backgroundColor:"#7454E1", width:"100%", height:60,marginBottom:10}}>
-        <Image style={{width:50,height:50,alignSelf:"center",margin:10}}  source={require("../assets/history_reward_gift.png")}/> 
-        <Text style={{alignSelf:"center", color:"#FFFFFF" , fontWeight:"bold"}}>Lịch sử đổi quà</Text>
-      </View>
-      <Text style={{fontSize:16,fontWeight:"bold", alignSelf:"flex-start", margin:10}}>Quà hấp dẫn</Text>
+
+      <Text style={{ fontSize: 16, fontWeight: "bold", alignSelf: "flex-start", margin: 10 }}>Quà hấp dẫn</Text>
       <FlatList
         data={nfts}
         renderItem={renderNFTCard}
@@ -147,7 +155,7 @@ export default function DiemThuongScreen() {
         contentContainerStyle={styles.contentContainer}
       />
 
-      
+
     </View>
   );
 }
@@ -156,18 +164,18 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
-    alignItems:"center",
+    alignItems: "center",
   },
 
   cardView: {
-    backgroundColor: "#fff",
+    backgroundColor: "#e2e2e2",
     borderWidth: 1,
-    borderColor: "#EEEEEE",
+    borderColor: "#bafffe",
     margin: 20,
-    shadowColor: "#000",
+    shadowColor: "#bafffe",
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.2,
-    elevation: 2,
+    elevation: 8,
     borderRadius: 20,
     flexDirection: "row",
     justifyContent: "space-around",
@@ -190,7 +198,10 @@ const styles = StyleSheet.create({
   },
   imgBackground: {
     width: "100%",
-    height: "100%",
-    // flex:1,
+    height: 170,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center'
+    
   },
 });

@@ -6,7 +6,8 @@ import {
   Image,
   TextInput,
   TouchableOpacity,
-  Alert
+  Alert,
+  ScrollView
 } from "react-native";
 import { useContext } from 'react';
 import { useNavigation } from "@react-navigation/native";
@@ -52,114 +53,108 @@ export default function SignIn() {
   };
 
   const handleLogout = () => {
-    setPassword(""); 
+    setPassword("");
     logout();
   };
 
 
   return (
-    <View style={styles.container}>
-      <Image
-        style={{ width: "100%" }}
-        source={require("../assets/frame_11.png")}
-      />
-      <Text style={{ fontSize: 38, textAlign: "center", marginTop: 10 }}>
-        Welcome Back
-      </Text>
-      <Text style={{ fontSize: 20, textAlign: "center", color: "#969696" }}>
-        Sign to countinue
-      </Text>
-
-      <TextInput
-        style={{
-          width: 360,
-          borderWidth: 1,
-          borderRadius: 10,
-          borderColor: "#000000",
-          borderWidth: 0.5,
-          height: 40,
-          padding: 10,
-          margin: 15,
-          alignSelf: "center",
-        }}
-        placeholder="Email"
-        onChangeText={(txt) => {
-          setEmail(txt);
-        }}
-      />
-
-      <TextInput
-        style={{
-          width: 360,
-          borderWidth: 1,
-          borderRadius: 10,
-          borderColor: "#000000",
-          borderWidth: 0.5,
-          height: 40,
-          padding: 10,
-          margin: 15,
-          alignSelf: "center",
-        }}
-        placeholder="Password"
-        onChangeText={(txt) => {
-          setPassword(txt);
-        }}
-        secureTextEntry={true}
-        value={password}
-      />
-
-      <TouchableOpacity
-        style={{
-          width: 360,
-          backgroundColor: "#F46535",
-          height: 45,
-          alignSelf: "center",
-          borderRadius: 10,
-          justifyContent: "center",
-        }}
-        // onPress={() => {
-        //   navigation.navigate("Màn Hình Chính");
-
-        // }}
-        onPress={() => {
-          login(email, password);
-        }}
-      >
-        <Text style={{ alignSelf: "center", fontSize: 22, color: "#FFF" }}>
-          Sign In
-        </Text>
-      </TouchableOpacity>
+    <ScrollView
+      style={{
+        opacity: 50
+      }}>
       <View
         style={{
-          flexDirection: "row",
-          width: 360,
-          alignSelf: "center",
-          marginTop: 20,
-          justifyContent: "space-evenly",
-        }}
-      >
-        <Text
+          flex: 1,
+          flexDirection: 'row'
+        }}>
+        <View
           style={{
-            fontSize: 18,
-            textAlign: "center",
-            fontWeight: "300",
-            justifyContent: "center",
+            height: 150,
+            width: 150,
+            backgroundColor: '#5daef2',
+            borderRadius: 750,
+            top: -75,
+            left: 150
+          }} />
+        <View
+          style={{
+            height: 300,
+            width: 300,
+            backgroundColor: '#0d0dd9',
+            borderRadius: 150,
+            top: -100,
+            left: -200
+          }}>
+          <Text
+            style={[styles.txt, {
+              top: 150,
+              left: 60,
+              color: 'white'
+            }]}>Xin Chào,{'\n'}     Mời đăng nhập</Text>
+        </View>
+
+      </View>
+
+      {/* View textinput tài khoản mật khẩu */}
+      <View
+        style={{
+          flex: 2,
+        }}>
+        <Text
+          style={styles.txt}>Tài Khoản</Text>
+        <TextInput
+          onChangeText={(txt) => {
+            setEmail(txt);
           }}
-        >
-          Don't have account?
-        </Text>
+          style={styles.txtInput}
+          placeholder='example@gmail.com' />
+
+
+        <Text style={[styles.txt, { marginTop: 5 }]}>Mật khẩu</Text>
+        <TextInput
+          onChangeText={(txt) => {
+            setPassword(txt);
+          }}
+          style={styles.txtInput}
+          secureTextEntry={true}
+          placeholder='Mật khẩu có 6 kí tự trở lên' />
+
         <TouchableOpacity
           onPress={() => {
-            navigation.navigate('Màn Hình Đăng Ký')
+            login(email, password);
           }}
-
-        >
-          <Text style={{ fontSize: 18, color: "#F46535", textAlign: "center" }}>
-            Create a new account.
-          </Text>
+          style={[styles.btnLogin, {
+            alignItems: 'center',
+            justifyContent: 'center',
+            marginTop: 30,
+            borderRadius: 15
+          }]}>
+          <Text style={[styles.txt,
+          {
+            fontSize: 24,
+            marginRight: 10,
+            color: 'white',
+          }
+          ]}>Đăng nhập</Text>
         </TouchableOpacity>
+        <View
+          style={{
+            justifyContent: 'center',
+            alignItems: 'center',
+            marginTop: 20
+          }}>
+          <TouchableOpacity
+            onPress={() => {
+              navigation.navigate('Màn Hình Đăng Ký')
+            }}>
+            <Text
+              style={{
+              }}>Chưa có tài khoản, đăng ký ở đây</Text>
+          </TouchableOpacity>
+        </View>
       </View>
-    </View>
+    </ScrollView>
   );
 }
 
@@ -180,4 +175,23 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     marginBottom: 20,
   },
+  txtInput: {
+    borderWidth: 2,
+    marginHorizontal: 10,
+    height: 60,
+    borderRadius: 5,
+    paddingHorizontal: 10
+  },
+  txt: {
+    fontSize: 25,
+    fontWeight: 'bold',
+    marginLeft: 10
+  },
+  btnLogin: {
+    margin: 10,
+    height: 50,
+    borderRadius: 5,
+    paddingHorizontal: 10,
+    backgroundColor: "blue"
+  }
 });

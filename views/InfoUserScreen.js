@@ -5,11 +5,12 @@ import { Color, Border, FontSize } from "../configs/GlobalStyles";
 import { useAuth } from "../configs/authContext";
 import { useNavigation } from "@react-navigation/native";
 
+
 const InfoScreen = () => {
   const { user, logout } = useAuth();
   const navigation = useNavigation();
   const [password, setPassword] = useState("");
-  // const [previousPassword, setPreviousPassword] = useState("");
+
 
   const handleLogout = () => {
     setPassword("");
@@ -29,304 +30,173 @@ const InfoScreen = () => {
     navigation.navigate('InfoDetail');
   };
 
-  const handleNavigateWallet= () => {
+  const handleNavigateWallet = () => {
     navigation.navigate('HomeWall');
   };
 
 
   return (
-    <View style={styles.InfoScreen, { marginTop: -110 }}>
-      <View style={[styles.accountInformationParent, styles.parentShadowBox]}>
-        <Text style={[styles.accountInformation, styles.settingTypo]}>
-          account information
-        </Text>
-        <Image
-          style={[styles.arrowForwardIosIcon, styles.arrowIconLayout]}
-          contentFit="cover"
-          source={require("../assets/arrow-forward-ios.png")}
-        />
-        <Image
-          style={[styles.arrowForwardIosIcon1, styles.arrowIconLayout]}
-          contentFit="cover"
-          source={require("../assets/arrow-forward-ios.png")}
-        />
-        <Image
-          style={[styles.arrowForwardIosIcon2, styles.arrowIconLayout]}
-          contentFit="cover"
-          source={require("../assets/arrow-forward-ios.png")}
-        />
-        <TouchableOpacity onPress={handleChangeCapcha}>
-          <Text style={[styles.passwordAndSecurity, styles.helpTypo]}>
-            Password and Security
-          </Text>
-          
+    <View>
+      <View style={styles.infoContainer}>
+        <TouchableOpacity style={styles.infoTitle}
+          onPress={handleNavigateToInfoDetail}>
+          {user && user.avatar && (
+            <Image
+              style={styles.image8Icon}
+              contentFit="cover"
+              source={{ uri: user.avatar }}
+            />
+          )}
+          <View
+            style={{ marginLeft: 20 }}>
+            <Text style={styles.nameTitle}>{user.username}</Text>
+            <Text style={styles.emailTitle}>{user.email}</Text>
+            <Text>{user.solanaAddress}</Text>
+          </View>
         </TouchableOpacity>
-        <Text style={[styles.persionalPassword, styles.changeYourETypo]}>
-            persional password
-          </Text>
-        <TouchableOpacity onPress={handleNavigateToInfoDetail}>
-          <Text style={[styles.doUser, styles.helpTypo]}>Do User</Text>
+        <View style={{ justifyContent: 'center', alignItems: 'center', width: '100%', marginVertical:10 }}>
+          <View style={{ borderWidth: 0.5, opacity: 0.5, width: '90%' }} />
+        </View>
+        <TouchableOpacity onPress={() => navigation.navigate('ChangeEmail')}
+          style={{ justifyContent: 'center', marginTop: 10 }}>
+          <View style={{
+            flexDirection: 'row',
+            alignItems: 'center'
+          }}>
+            <Image
+              style={[styles.iconLayout]}
+              contentFit="cover"
+              source={require("../assets/gmail.png")}
+            />
+            <View style={styles.viewTxtBtn}>
+              <Text style={{ fontSize: 16 }}>
+                Email
+              </Text>
+              <Text style={{ opacity: 0.5 }}>
+                change your e - mail
+              </Text>
+            </View>
+          </View>
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={() => navigation.navigate('ChangeEmail')}>
-          <Text style={[styles.email, styles.helpTypo]}>Email</Text>
-          
+        <TouchableOpacity onPress={handleChangeCapcha}
+          style={{ justifyContent: 'center', marginTop: 10 }}>
+          <View style={{
+            flexDirection: 'row',
+            alignItems: 'center'
+          }}>
+            <Image
+              style={[styles.iconLayout]}
+              contentFit="cover"
+              source={require("../assets/reset-password.png")}
+            />
+            <View style={styles.viewTxtBtn}>
+              <Text style={{ fontSize: 16 }}>
+                Password and Security
+              </Text>
+              <Text style={{ opacity: 0.5 }}>
+                persional password
+              </Text>
+            </View>
+          </View>
         </TouchableOpacity>
-        <Text style={[styles.changeYourE, styles.changeYourETypo]}>
-            change your e - mail
-          </Text>
-          <TouchableOpacity onPress={handleNavigateWallet}>
-          <Text style={[styles.wallet, styles.helpTypo]}>
-            Wallet
-          </Text>
-          </TouchableOpacity>
-          <Text style={[styles.changeYourW, styles.changeYourETypo]}>
-            connect wallet
-          </Text>
-         
-        <Image
-          style={[styles.accountCircleIcon, styles.iconLayout]}
-          contentFit="cover"
-          source={require("../assets/account-circle.png")}
-        />
-        <Image
-          style={[styles.lockIcon, styles.iconLayout]}
-          contentFit="cover"
-          source={require("../assets/lock.png")}
-        />
-        <Image
-          style={[styles.draftsIcon, styles.iconLayout]}
-          contentFit="cover"
-          source={require("../assets/drafts.png")}
-        />
 
-        <Image
-          style={[styles.walletContainer, styles.iconLayout]}
-          contentFit="cover"
-          source={require("../assets/Wallet.png")}
-        />
-      </View>
-      <View style={[styles.arrowForwardIosParent, styles.parentShadowBox2]}>
-        <Image
-          style={[styles.arrowForwardIosIcon, styles.arrowIconLayout]}
-          contentFit="cover"
-          source={require("../assets/arrow-forward-ios.png")}
-        />
-        <Image
-          style={[styles.arrowForwardIosIcon1, styles.arrowIconLayout]}
-          contentFit="cover"
-          source={require("../assets/arrow-forward-ios.png")}
-        />
-        <Image
-          style={[styles.arrowForwardIosIcon2, styles.arrowIconLayout]}
-          contentFit="cover"
-          source={require("../assets/arrow-forward-ios.png")}
-        />
-        <Text style={[styles.help, styles.helpTypo]}>Help</Text>
-        <Text style={[styles.changeLanguage, styles.helpTypo]}>
-          Change Language
-        </Text>
-        <Text style={[styles.setting, styles.settingTypo]}>Setting</Text>
-        <TouchableOpacity onPress={handleLogout}>
-          <Text style={[styles.logout, styles.helpTypo]}>Logout</Text>
+        <TouchableOpacity onPress={handleNavigateWallet}
+          style={{ justifyContent: 'center', marginVertical: 10 }}>
+          <View style={{
+            flexDirection: 'row',
+            alignItems: 'center'
+          }}>
+            <Image
+              style={[styles.iconLayout]}
+              contentFit="cover"
+              source={require("../assets/phantomicon.png")}
+            />
+            <View style={styles.viewTxtBtn}>
+              <Text style={{ fontSize: 16 }}>
+                My Phantom
+              </Text>
+              <Text style={{ opacity: 0.5 }}>
+                connect wallet
+              </Text>
+            </View>
+          </View>
         </TouchableOpacity>
-        <Image
-          style={[styles.accountCircleIcon, styles.iconLayout]}
-          contentFit="cover"
-          source={require("../assets/language.png")}
-        />
-        <Image
-          style={[styles.lockIcon, styles.iconLayout]}
-          contentFit="cover"
-          source={require("../assets/help.png")}
-        />
-        <Image
-          style={[styles.logoutIcon, styles.iconLayout]}
-          contentFit="cover"
-          source={require("../assets/logout.png")}
-        />
       </View>
-      {user && user.avatar && (
-        <Image
-          style={styles.image8Icon}
-          contentFit="cover"
-          source={{ uri: user.avatar }}
-        />
-      )}
+
+      <TouchableOpacity 
+        style={{ justifyContent: 'center', marginVertical: 10 }}>
+        <View style={{
+          flexDirection: 'row',
+          alignItems: 'center'
+        }}>
+          <Image
+            style={[styles.iconLayout]}
+            contentFit="cover"
+            source={require("../assets/language.png")}
+          />
+          <View style={styles.viewTxtBtn}>
+            <Text style={{ fontSize: 16 }}>
+            Change Language
+            </Text>
+          </View>
+        </View>
+      </TouchableOpacity>
+
+      <TouchableOpacity
+        style={{ justifyContent: 'center', marginVertical: 10 }}>
+        <View style={{
+          flexDirection: 'row',
+          alignItems: 'center'
+        }}>
+          <Image
+            style={[styles.iconLayout]}
+            contentFit="cover"
+            source={require("../assets/help.png")}
+          />
+          <View style={styles.viewTxtBtn}>
+            <Text style={{ fontSize: 16 }}>
+              Help
+            </Text>
+          </View>
+        </View>
+      </TouchableOpacity>
+
+      <TouchableOpacity onPress={handleLogout}
+        style={{ justifyContent: 'center', marginVertical: 10 }}>
+        <View style={{
+          flexDirection: 'row',
+          alignItems: 'center'
+        }}>
+          <Image
+            style={[styles.iconLayout]}
+            contentFit="cover"
+            source={require("../assets/logout.png")}
+          />
+          <View style={styles.viewTxtBtn}>
+            <Text style={{ fontSize: 16 }}>
+              Logout
+            </Text>
+          </View>
+        </View>
+      </TouchableOpacity>
+      
+      
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  parentShadowBox: {
-    height: 276,
-    width: 395,
-    borderWidth: 0.5,
-    borderColor: Color.colorSilver,
-    borderStyle: "solid",
-    shadowOpacity: 1,
-    elevation: 4,
-    shadowRadius: 4,
-    shadowOffset: {
-      width: 0,
-      height: 4,
-    },
-    shadowColor: "rgba(0, 0, 0, 0.25)",
-    borderRadius: Border.br_xl,
-    marginLeft: -197,
-    left: "50%",
-    position: "relative",
-    overflow: "hidden",
-    backgroundColor: Color.colorWhite,
-    marginBottom: 20,
-  },
-
-  parentShadowBox2: {
-    height: 220,
-    width: 395,
-    borderWidth: 0.5,
-    borderColor: Color.colorSilver,
-    borderStyle: "solid",
-    shadowOpacity: 1,
-    elevation: 4,
-    shadowRadius: 4,
-    shadowOffset: {
-      width: 0,
-      height: 4,
-    },
-    shadowColor: "rgba(0, 0, 0, 0.25)",
-    borderRadius: Border.br_xl,
-    marginLeft: -197,
-    left: "50%",
-    position: "absolute",
-    overflow: "hidden",
-    backgroundColor: Color.colorWhite,
-    marginTop: 20, 
-  },
-  settingTypo: {
-    textAlign: "left",
-    position: "absolute",
-  },
-  arrowIconLayout: {
-    height: 24,
-    width: 24,
-    left: 352,
-    position: "absolute",
-  },
-  helpTypo: {
-    left: 65,
-    textAlign: "left",
-    color: Color.colorBlack,
-    position: "absolute",
-  },
-  changeYourETypo: {
-    color: Color.colorGray_100,
-    left: 65,
-    textAlign: "left",
-    position: "absolute",
-  },
   iconLayout: {
     height: 30,
     width: 30,
-    left: 18,
-    position: "absolute",
-  },
-  thngTinC: {
-    marginTop: -15,
-    top: "50%",
-    left: 24,
-    fontSize: 25,
-    fontWeight: "700",
-    textAlign: "left",
-    color: Color.colorBlack,
-    position: "absolute",
-  },
-  InfoScreenWrapper: {
-    top: 43,
-    left: 0,
-    width: 444,
-    height: 64,
-    position: "absolute",
-    overflow: "hidden",
-    backgroundColor: Color.colorWhite,
-  },
-  accountInformation: {
-    top: 85,
-    color: "#777",
-    fontSize: FontSize.size_xs,
-    left: 65
-  },
-  arrowForwardIosIcon: {
-    top: 66,
-  },
-  arrowForwardIosIcon1: {
-    top: 117,
-  },
-  arrowForwardIosIcon2: {
-    top: 172,
-  },
-  passwordAndSecurity: {
-    top: 110,
-  },
-  wallet:{
-    top:215,
-  },
-  doUser: {
-    top: 59,
-  },
-  persionalPassword: {
-    top: 136,
-  },
-  email: {
-    top: 161,
-  },
-  changeYourE: {
-    top: 187,
-  },
-  changeYourW: {
-    top: 237,
-  },
-  accountCircleIcon: {
-    top: 66,
-  },
-  lockIcon: {
-    top: 117,
-  },
-  draftsIcon: {
-    top: 169,
-  },
-  accountInformationParent: {
-    top: 166,
-  },
-  help: {
-    top: 122,
-  },
-  changeLanguage: {
-    top: 71,
-  },
-  setting: {
-    top: 16,
-    left: 21,
-    fontSize: 30,
-    color: Color.colorBlack,
-  },
-  logout: {
-    top: 171,
-  },
-  logoutIcon: {
-    top: 168,
-  },
-  arrowForwardIosParent: {
-    top: 430,
+    marginLeft: 20
   },
   image8Icon: {
-    marginLeft: -50,
-    top: 116,
     borderRadius: 70,
     width: 100,
     height: 100,
-    left: "50%",
-    position: "absolute",
+
   },
   InfoScreen: {
     borderRadius: 40,
@@ -335,13 +205,32 @@ const styles = StyleSheet.create({
     height: 979,
     overflow: "hidden",
     backgroundColor: Color.colorWhite,
-    marginTop:-90
+    marginTop: -90
   },
-  walletContainer: {
-    top: 215,
-    flexDirection: 'row', 
-    alignItems: 'center', 
+  infoContainer: {
+    width: '100',
+    height: 'auto',
+    borderWidth: 1,
+    borderRadius: 20,
+    paddingVertical: 10
   },
+  infoTitle: {
+    margin: 10,
+    width: '100%',
+    flexDirection: 'row'
+  },
+  nameTitle: {
+    fontSize: 27,
+    fontWeight: "bold"
+  },
+  emailTitle: {
+    fontSize: 15,
+    opacity: 0.5,
+    fontStyle: 'italic'
+  },
+  viewTxtBtn: {
+    marginLeft: 10
+  }
 });
 
 

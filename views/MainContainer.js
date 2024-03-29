@@ -34,16 +34,7 @@ export default function Home() {
           ),
         }}
       />
-      <Tab.Screen
-        name="History Take Quiz" 
-        component={QuizScreen} 
-        options={{
-          tabBarLabel: 'History', 
-          tabBarIcon: ({ color }) => (
-            <MaterialCommunityIcons name="history" color={color} size={26} />
-          ),
-        }}
-      />
+    
       <Tab.Screen
         name="Reward Gift"
         component={DiemThuongScreen}

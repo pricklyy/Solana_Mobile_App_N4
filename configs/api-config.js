@@ -1,9 +1,11 @@
 
-export const IP_ADDRESS = '192.168.1.19';
+export const IP_ADDRESS = '192.168.1.114';
 
 // api users
 
 export const API_LOGIN= `http://${IP_ADDRESS}:6002/api/login`;
+
+export const API_Register= `http://${IP_ADDRESS}:6002/api/create-user`;
 
 export const API_CHANGE_PASSWORD= `http://${IP_ADDRESS}:6002/api/change-password`;
 

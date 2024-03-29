@@ -5,7 +5,6 @@ export function SignInFeature() {
   return (
     <>
       <View style={styles.buttonGroup}>
-        <ConnectButton />
         <SignInButton />
       </View>
     </>

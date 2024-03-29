@@ -56,6 +56,7 @@ export default function RankScreen() {
         style={[
           styles.rankItem,
           itemId === currentUserId && styles.currentUserItem,
+          {borderRadius: 70}
         ]}
       >
         {item.user && (
@@ -108,33 +109,6 @@ export default function RankScreen() {
   };
 
   return (
-    // <View style={styles.container}>
-    //   <View style={{ alignItems: "center" }}>
-    //     <Text style={styles.title}>Weekly Rankings</Text>
-    //     <Image
-    //       style={{ width: 250, height: 180 }}
-    //       source={require("../assets/image_rank.png")}
-    //     />
-    //   </View>
-
-    //   {/* <View style={styles.listCtn}>
-    //     <FlatList
-    //       style={styles.list}
-    //       // contentContainerStyle={styles.list}
-    //       scrollEnabled={true}
-    //       data={rankings}
-    //       keyExtractor={(item) => item._id}
-    //     />
-    //   </View> */}
-
-    //   <FlatList
-    //       style={styles.list}
-    //         data={rankings}
-    //         renderItem={renderItem}
-    //         keyExtractor={(item) => item._id}
-    //       />
-    // </View>
-
     <View style={styles.mainCtn}>
       <View style={{ alignItems: "center", flex: 0.8 }}>
         <Text style={styles.title}>Weekly Rankings</Text>
@@ -183,9 +157,10 @@ const styles = StyleSheet.create({
     width: "100%",
     alignSelf: "center",
     backgroundColor: "#FFF",
+    marginBottom: 5
   },
   currentUserItem: {
-    backgroundColor: "#62D362",
+    backgroundColor: "#f7f7f7",
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
@@ -210,14 +185,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     fontSize: 16,
   },
-  // list: {
-  //   paddingHorizontal: 10,
-  //   borderTopLeftRadius: 30,
-  //   borderTopRightRadius: 30,
-  //   backgroundColor: 'white',
-  // },
 
-  //test
   mainCtn: {
     flex: 1,
     justifyContent: "center",
@@ -231,8 +199,8 @@ const styles = StyleSheet.create({
   listCtn: {
     flex: 1,
     width: "100%",
-    borderTopLeftRadius: 40,
-    borderTopRightRadius: 40,
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
     justifyContent: "center",
     overflow: "hidden",
   },

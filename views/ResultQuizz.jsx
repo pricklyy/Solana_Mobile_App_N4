@@ -21,8 +21,8 @@ const ResultQuizz = ({ route }) => {
                 <Text style={styles.heading}>Quiz Result</Text>
                 <View style={styles.resultContainer}>
                     <Text style={styles.resultText}>Total Score: {score}</Text>
-                    <Text style={styles.resultText}>Correct Answers: {correctAnswersCount}</Text>
-                    <Text style={styles.resultText}>Incorrect Answers: {incorrectAnswersCount}</Text>
+                    <Text style={styles.resultText1}>Correct Answers: {correctAnswersCount}</Text>
+                    <Text style={styles.resultText2}>Incorrect Answers: {incorrectAnswersCount}</Text>
                 </View>
                 <Text style={styles.heading}>Questions and Answers</Text>
                 {questions.map((question, index) => (
@@ -59,6 +59,7 @@ const styles = StyleSheet.create({
         paddingBottom: 50,
         justifyContent: 'center',
         alignItems: 'center',
+        backgroundColor : '#252c4a',
     },
     scrollContainer: {
         flexGrow: 1,
@@ -70,6 +71,7 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         textAlign: 'center',
         marginBottom: 20,
+        color:'#fff'
     },
     resultContainer: {
         marginBottom: 20,
@@ -77,6 +79,21 @@ const styles = StyleSheet.create({
     resultText: {
         fontSize: 16,
         marginBottom: 5,
+        fontWeight: 'bold',
+        color:'#fff'
+        
+    },
+    resultText1: {
+        fontSize: 16,
+        marginBottom: 5,
+        fontWeight: 'bold',
+        color:'green'
+    },
+    resultText2: {
+        fontSize: 16,
+        marginBottom: 5,
+        fontWeight: 'bold',
+        color:'red'
     },
     questionContainer: {
         marginBottom: 20,
@@ -85,17 +102,21 @@ const styles = StyleSheet.create({
         fontSize: 18,
         fontWeight: 'bold',
         marginBottom: 10,
+        color:'#fff'
     },
     answerText: {
         fontSize: 16,
         marginLeft: 20,
         marginBottom: 5,
+        color:'#fff'
     },
     correctAnswer: {
         color: 'green',
+        fontWeight:'bold'
     },
     incorrectAnswer: {
         color: 'red',
+        fontWeight:'bold'
     },
     backButton: {
         position: 'absolute',
@@ -104,11 +125,14 @@ const styles = StyleSheet.create({
         zIndex: 2,
     },
     homeButton: {
-        backgroundColor: 'blue',
-        paddingVertical: 10,
-        alignItems: 'center',
-        marginBottom: 20,
-        marginTop:20
+        backgroundColor: '#007BFF',
+        padding: 10,
+        marginVertical: 10,
+        borderRadius: 5,
+        width:150,
+        alignItems:'center',
+        borderRadius : 20,
+        
     },
     buttonText: {
         color: '#fff',

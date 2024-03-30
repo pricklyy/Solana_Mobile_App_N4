@@ -96,6 +96,7 @@ const StartQuizz = ({ navigation, route }) => {
                 <>
                     {testDetail.questions[currentIndex] ? (
                         <View>
+                            <Text style={styles.question}>Question 1<Text>{testDetail.questions[currentIndex].length}/</Text></Text>
                             <Text style={styles.question}>{testDetail.questions[currentIndex].content}</Text>
                             <View style={styles.answersContainer}>
                                 {testDetail.questions[currentIndex].answers && testDetail.questions[currentIndex].answers.length > 0 ? (
@@ -140,33 +141,49 @@ const styles = StyleSheet.create({
         padding: 10,
         justifyContent: 'center',
         alignItems: 'center',
+        backgroundColor : '#252c4a',
     },
     question: {
-        fontSize: 20,
+        fontSize: 25,
         fontWeight: 'bold',
-        marginBottom: 10,
-        textAlign: 'center',
+        bottom:10,
+        margin: 10,
+        color:'#fff'
     },
     answersContainer: {
         flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
+        justifyContent: 'left',
+        alignItems: 'left',
         marginTop: 20,
+        
+        
+    },
+    answerText: {
+        color:'#fff',
+        fontSize:20
     },
     answerButton: {
-        backgroundColor: '#eee',
+        backgroundColor: '#252c4a',
         padding: 10,
         marginVertical: 5,
-        borderRadius: 5,
+        borderRadius:20,
+        borderColor : '#214a6c',
+        borderWidth : 5,
+        
+       
     },
     selectedAnswer: {
-        backgroundColor: '#acd900',
+        backgroundColor: '#34d287',
     },
     nextButton: {
         backgroundColor: '#007BFF',
         padding: 10,
         marginVertical: 10,
         borderRadius: 5,
+        width:100,
+        borderRadius : 20,
+        left:140
+        
     },
     nextButtonText: {
         color: 'white',

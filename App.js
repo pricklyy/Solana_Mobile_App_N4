@@ -79,7 +79,7 @@ export default function App() {
                     <Stack.Screen name='Màn Hình Chào' component={Welcome} />
                     <Stack.Screen options={{ headerShown: false }} name='Màn Hình Đăng Nhập' component=
                       {ManHinhDangNhap} />
-                    <Stack.Screen name='Màn Hình Đăng Ký' component={ManHinhDangKy} />
+                    <Stack.Screen name='Màn Hình Đăng Ký' component={ManHinhDangKy}  />
                     <Stack.Screen name='Màn Hình Chính' component={ManHinhHome} />
                     <Stack.Screen name="GameDetail" component={GameDetail} />
                     <Stack.Screen name="StartQuizz" component={StartQuizz} />

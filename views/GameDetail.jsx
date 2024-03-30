@@ -66,7 +66,6 @@ export default function GameDetail({ route, navigation }) {
         <Image source={{ uri: quizDetail.image }} style={styles.image} />
       </View>
       <Text style={styles.textTitle}>{quizDetail.name}</Text>
-      <Text style={styles.text}>{quizDetail.description}</Text>
       <Text style={styles.text}>Number of Questions: {quizDetail && quizDetail.questions ? quizDetail.questions.length : 'N/A'}</Text>
 
       <TouchableOpacity style={styles.startButton} onPress={handleStartQuiz}>
@@ -80,25 +79,29 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 10,
+    backgroundColor : '#252c4a',
   },
   contentContainer: {
     alignItems: 'center',
     marginBottom: 10,
   },
   image: {
-    width: '100%',
+    width: 500,
     height: 300,
     borderRadius: 10,
+    bottom:10,
   },
   textTitle: {
-    textAlign: 'center',
+    marginLeft : 25,
     fontSize: 24,
     fontWeight: 'bold',
     marginTop: 10,
+    color:'#fff'
   },
   text: {
     fontSize: 18,
-    marginTop: 10,
+    marginLeft : 25,
+    color:'#fff'
   },
   backIcon: {
     position: 'absolute',
@@ -110,7 +113,7 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   startButton: {
-    backgroundColor: '#008080',
+    backgroundColor: '#007BFF',
     paddingVertical: 15,
     paddingHorizontal: 30,
     borderRadius: 10,

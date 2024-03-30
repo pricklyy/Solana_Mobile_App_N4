@@ -94,9 +94,10 @@ export default function RankScreen() {
                 <Text style={{ fontWeight: "bold",color:"red"}}>
                 {item.scoreWithinSevenDays} 
               </Text>
-              <Text style={{ fontWeight: "bold", margin:5}}>
+              {/* <Text style={{ fontWeight: "bold", margin:5}}>
                 Score
-              </Text>
+              </Text> */}
+              <Image style={{ width: 30, height: 30, alignSelf: "center" }} source={require("../assets/points.png")} />
             </View>
           </>
         )}
@@ -111,14 +112,14 @@ export default function RankScreen() {
   return (
     <View style={styles.mainCtn}>
       <View style={{ alignItems: "center", flex: 0.8 }}>
-        <Text style={styles.title}>Weekly Rankings</Text>
+        <Text style={styles.title}>Xếp hạng</Text>
         <Image
-          style={{ width: 300, height: 200 }}
-          source={require("../assets/image_rank.png")}
+          style={{ width: 150, height: 150 }}
+          source={require("../assets/trophy.png")}
         />
       </View>
       <View style={styles.listCtn}>
-        <StatusBar hidden={true} />
+        {/* <StatusBar hidden={true} /> */}
         <FlatList
           style={styles.list}
           contentContainerStyle={styles.list}
@@ -135,7 +136,7 @@ export default function RankScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#56AFAD",
+    backgroundColor: "#6957E7",
     alignItems: "center",
     justifyContent: "center",
     flexDirection: "column",
@@ -190,7 +191,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#459593",
+    backgroundColor: "#6957E7",
   },
   entry: {
     width: "100%",
